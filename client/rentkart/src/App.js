@@ -1,4 +1,5 @@
-import Rentkart from './Component/Rentkart';
+import './styles/index.scss';
+import Rentkart from './component/Rentkart';
 
 function App() {
   return (
