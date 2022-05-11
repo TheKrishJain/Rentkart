@@ -1,5 +1,5 @@
 import './styles/index.scss';
-import Rentkart from './component/Rentkart';
+import Rentkart from './Component/Rentkart';
 
 function App() {
   return (
