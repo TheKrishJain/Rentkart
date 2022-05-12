@@ -1,18 +1,28 @@
 const express = require('express')
 require('./db/mongoose')
-const User = require('./models/user')
-const Task = require('./models/task')
+const Landlord = require('./models/landlord')
+const Tenant = require('./models/tenant')
 
 const app = express()
 const port = process.env.PORT || 3001
 
 app.use(express.json())
 
-app.post('/users', (req, res) => {
-    const user = new User(req.body)
+app.post('/Landlords', (req, res) => {
+    const landlord = new Landlord(req.body)
 
-    user.save().then(() => {
-        res.status(201).send(user)
+    landlord.save().then(() => {
+        res.status(201).send(landlord)
+    }).catch((e) => {
+        res.status(400).send(e)
+    })
+})
+
+app.post('/Tenants', (req, res) => {
+    const tenant = new Tenant(req.body)
+
+    tenant.save().then(() => {
+        res.status(201).send(tenant)
     }).catch((e) => {
         res.status(400).send(e)
     })
