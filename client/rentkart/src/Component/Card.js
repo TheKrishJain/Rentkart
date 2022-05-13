@@ -9,8 +9,5 @@ const Card = (props) => {
             <p className='Rent'>Rent- {props.rent}/ -P.M</p>
         </div>
     )
-
-
-
 }
-export default Card
+export default Card;
