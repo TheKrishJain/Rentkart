@@ -16,13 +16,14 @@
 .Card{
     overflow:hidden;
     box-shadow: 0 2px 20px grey;
-    border-radius: 25px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
+    
     cursor: pointer;
  }
  .Card-Description{
-    
+   
    
      font-family: Georgia, 'Times New Roman', Times, serif;
      font-size: 15px;
@@ -31,4 +32,4 @@
     margin: 1px;
     font-size: 20px;
     margin-left: 50px;
- }
+}
