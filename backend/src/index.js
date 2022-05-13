@@ -1,22 +1,23 @@
-import express, { json } from 'express';
-import './db/mongoose';
-import User from './models/user';
-import Room from './models/room';
+import express, { Router, json } from 'express';
+import Room from "./models/room.js";
+import './db/mongoose.js';
+// import User from './models/user';
 
 const app = express()
 const port = process.env.PORT || 3001
 
+
 app.use(json())
 
-app.post('/user', (req, res) => {
-    const landlord = new User(req.body)
+// app.post('/user', (req, res) => {
+//     const landlord = new User(req.body)
 
-    landlord.save().then(() => {
-        res.status(201).send(landlord)
-    }).catch((e) => {
-        res.status(400).send(e)
-    })
-})
+//     landlord.save().then(() => {
+//         res.status(201).send(landlord)
+//     }).catch((e) => {
+//         res.status(400).send(e)
+//     })
+// })
 
 // app.post('/Tenants', (req, res) => {
 //     const tenant = new User(req.body)
