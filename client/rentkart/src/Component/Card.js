@@ -7,7 +7,7 @@ const Card = (props) =>
 <div className='Card'>
 
     <img  className='picture' src={props.img}/ >
-    
+     {/* shreaysh */}
     <p className='CardDescription'>{props.description}</p>
     <p className='Rent'>Rent- {props.rent}/ -P.M</p>
 
