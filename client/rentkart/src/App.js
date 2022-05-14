@@ -1,13 +1,18 @@
-import './styles/index.scss';
-import Rentkart from './component/Rentkart';
+// import './styles/index.scss';
+import Rentkart from './Component/Rentkart';
 
 function App() {
+  const onClickHandelere=()=>{
+    
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <Rentkart />
-      </header>
-    </div>
+    // <div className="App">
+    //   <header className="App-header">
+    //     <Rentkart />
+    //   </header>
+    // </div>
+    <Rentkart >
+    </Rentkart>
   );
 }
 
