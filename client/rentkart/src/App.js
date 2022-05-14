@@ -4,7 +4,6 @@ import Card from './component/Card';
 import RoomForm from './component/RoomForm';
 import { RoomDataContext } from './context';
 import './styles/index.scss';
-
 function App() {
   const initialData = {
     name : "",
