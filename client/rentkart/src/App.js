@@ -1,6 +1,5 @@
 import './styles/index.scss';
-import Rentkart from './Component/Rentkart';
-
+import Rentkart from './component/Rentkart';
 function App() {
   return (
     <div className="App">
