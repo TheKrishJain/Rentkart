@@ -1,22 +1,22 @@
 import React from 'react'
-import '../styles/card.scss'
 
-const Card = (props) =>
-{
-    return (
-<div className='Card'>
+import FallbackImg from '../images/img_placeholder.svg';
+import '../styles/_card.scss'
 
-    <img  className='picture' src={props.img}/ >
-    <p className='CardDescription'>{props.description}</p>
-    <p className='Rent'>Rent- {props.rent}/ -P.M</p>
+const Card = ({ children, ...props }) => (
+    <div className='card'>
+    <img  
+			className='card__picture' 
+			src={props.roomPhoto || FallbackImg}  
+			onError={(e) => (e.currentTarget.src = FallbackImg)} 
+			alt={"img"}
+			/>
+    <div className='card__info'>
+    <p className='card__info--desc'>{props.description}</p>
+    <span className='card__info--rent'>Rent- {props.rentalPrice}/ -P.M</span>
+    {children ? <>{children}</> : null}
+    </div>
+    </div>
+);
 
-</div>
-
-
-
-    )
-
-
-
-}
-export default Card
+export default Card;
