@@ -7,12 +7,9 @@
   },
   "author": "",
   "license": "ISC",
-<<<<<<< HEAD
   "dependencies": {
     "react-router-dom": "^6.3.0",
     "yarn": "^1.22.18"
-  }
-=======
+  },
   "description": ""
->>>>>>> b59d916711b1182ba494faa502fc599ba9cc6c55
 }

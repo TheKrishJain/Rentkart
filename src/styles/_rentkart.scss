@@ -1,0 +1,7 @@
+.card {
+  color: brown;
+
+  @include mobile {
+    color: black;
+  }
+}
