@@ -13,9 +13,10 @@ app.use(json())
   // api for filtering rooms
   app.get('/room',async(req,res)=>{
     try{
+      let { page, size, sort } = req.query;
         let obj = {}
         if(req.query.rental_price){
-            obj.rental_price=req.query.rental_price
+            obj.rental_price={$lte:req.query.rental_price}
         }
         if(req.query.city){
             obj.city=req.query.city
@@ -26,11 +27,22 @@ app.use(json())
         if(req.query.furnished){
             obj.furnished=req.query.furnished
         }
-        const room =await Room.find(obj)
+        if (!page) {
+          page = 1;
+        }
+        if(!size) {
+          size = 10;
+        }
+        const limit = parseInt(size);
+        const room =await Room.find(obj).sort({ votes: 1, _id: 1 }).limit(limit)
         if(!room){
             throw new Error()
         }
-        res.send(room)
+        res.send({
+          page,
+          size,
+          Info: room,
+        })
     } catch(e){
         res.status(404).send()
     }
