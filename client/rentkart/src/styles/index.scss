@@ -3,13 +3,23 @@
 
 @import './footer';
 @import './login';
-@import './sidebar';
 
 .main-container {
   width: 100%;
-  max-width: 130rem;
-  margin: 8rem 6rem 3rem;
+  max-width: 170rem;
+  margin: 8rem 2rem 6rem;
+  padding: 0 5rem;
   font-size: 2rem;
   font-weight: 400;
   padding: 2rem;
+  min-height: 72vh;
+}
+
+.App {
+  overflow: hidden;
+}
+
+ a {
+  text-decoration: unset !important;
+  color: inherit;
 }
