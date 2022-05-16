@@ -1,12 +1,12 @@
 
 
 .header {
-  padding: 3.2rem 4rem;
+  padding: 1.2rem 4rem;
   height: 6.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #e7f5ff;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(206,177,230,1) 92%);
   text-decoration: none;
   /* display: block; */
 }
@@ -80,7 +80,7 @@
 .section-hero,
 .section-services {
   padding: 9.6rem 0;
-  background-color: #a5d8ff;
+  background-color: linear-gradient(100deg, rgba(231, 116, 235, 0.8) 0%, rgba(236, 232, 236, 0.959) 25%);
   height: 200vh;
 
   display: flex;
