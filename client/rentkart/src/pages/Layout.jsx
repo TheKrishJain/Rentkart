@@ -6,15 +6,15 @@ import SideBar from '../component/Sidebar'
 import Login from "../component/Login";
 
 export default function Layout({children}) {
-  const {isLoginModalOpen} = useSelector((state) => ({
-    isLoginModalOpen: state.userStore.isLoginModalOpen,
-  }), shallowEqual);
+  // const {isLoginModalOpen} = useSelector((state) => ({
+  //   isLoginModalOpen: state.userStore.isLoginModalOpen,
+  // }), shallowEqual);
   return (
     <div>
       <Rentkart />
-      <SideBar isOpen={isLoginModalOpen}>
+      {/* <SideBar isOpen={isLoginModalOpen}>
         <Login />
-       </SideBar>  
+       </SideBar>   */}
       <div className='main-container'>
         {children}
       </div>
