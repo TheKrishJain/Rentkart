@@ -70,6 +70,32 @@ app.patch('/update-room/:id', async (req, res) => {
   }
 })
 
+//GET...to read data per room
+app.get('/all-rooms', (req, res) => {
+  Room.find({}).then((rooms) => {
+      res.send(rooms)
+  }).catch((e) => {
+      res.status(500).send(e)
+  })
+})
+//GET individual room data using id....
+
+app.get('/room/:id', (req, res) => {
+  const _id = req.params.id
+
+  Room.findById(_id).then((room) => {
+      if (!room) {
+          return res.status(404).send()
+      }
+
+      res.send(room)
+  }).catch((e) => {
+      res.status(500).send(e)
+  })
+})
+
+
+
 // app.post('/user', (req, res) => {
 //     const landlord = new User(req.body)
 
@@ -121,6 +147,9 @@ app.patch('/update-room/:id', async (req, res) => {
 //         res.status(400).send(e)
 //     })
 // })
+
+
+
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port)
