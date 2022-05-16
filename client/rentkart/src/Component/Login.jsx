@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import '../styles/index.scss';
+import '../styles/_login.scss';
 
-export default function Login() {
+export default function Login({setLogMode}) {
     // React States
     const [errorMessages, setErrorMessages] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -54,8 +54,8 @@ export default function Login() {
   
     // JSX code for login form
     const renderForm = (
-      <div className="form">
-        <form onSubmit={handleSubmit}>
+      <div className="form-container">
+        <form className="form-box" onSubmit={handleSubmit}>
           <div className="input-container">
             <label>Username </label>
             <input type="text" name="uname" required />
@@ -67,11 +67,16 @@ export default function Login() {
             {renderErrorMessage("pass")}
           </div>
           <div className="button-container">
-            <input type="submit" />
-            
+            Submit
           </div>
           
-          <a style={{justify:'center'}} href="">Create account</a>
+          <span 
+            onClick={() => setLogMode('sign-up')} 
+            className="cursor"
+            style={{justify:'center', paddingTop: '1rem'}}
+          >
+            Create account
+          </span>
         </form>
       </div>
     );

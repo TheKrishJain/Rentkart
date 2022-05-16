@@ -1,8 +1,9 @@
-import { SET_USERS_LIST, SET_USER_DATA } from '../action';
+import { SET_LOGIN_MODAL_OPEN, SET_USERS_LIST, SET_USER_DATA } from '../action';
 
 export const initialState = {
   userData: {},
   userList: [],
+  isLoginModalOpen: false,
 };
 
 const userReducer = (state= initialState, actions) => {
@@ -17,6 +18,11 @@ const userReducer = (state= initialState, actions) => {
         ...state,
         userList: actions.payload,
       };
+    case SET_LOGIN_MODAL_OPEN:
+      return {
+        ...state,
+        isLoginModalOpen: actions.payload,
+      }
     default : 
       return state;
   }

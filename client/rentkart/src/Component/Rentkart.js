@@ -1,17 +1,22 @@
-import {React} from 'react'
-import '../styles/bootstrap.min.css';
+import { useCallback } from 'react'
+import { useDispatch } from 'react-redux';
+
+import { SET_LOGIN_MODAL_OPEN } from '../redux/action';
 import '../index.css';
 import '../styles/nav.css';
-// import { ReactDOM } from 'react';
+import '../styles/index.scss';
+
 import logo from "../assets/logo.png"
 import HouseLogo from "../images/house.svg"
 
 export default function Rentkart() {
-  // const toggleNavbar = () => {
-  //   nav_header.classList.toggle("active");
-  // };
-  
-  // mobile_nav.addEventListener("click", () => toggleNavbar())
+const dispatch = useDispatch();
+
+const handleLoginModal = useCallback(() => {
+  dispatch({type: SET_LOGIN_MODAL_OPEN, payload: true});
+},[dispatch])
+
+
   return (
     <header className="header sticky" >
       <a href="#" target="_blank">
@@ -26,14 +31,13 @@ export default function Rentkart() {
           <li>
             <a
               className="navbar-link"
-              href="#"
-              target="_blank"
+              href="landlord"
               >
                 <img src={HouseLogo} alt="logo" />
                 List Your Property
               </a>
           </li>
-          <li><a href="#"><div className="btn btn-outline-primary myButton1">Login</div></a></li>
+          <li><div onClick={handleLoginModal} className="btn btn-outline-primary myButton1 cursor">Login</div></li>
         </ul>
       </nav>
 
