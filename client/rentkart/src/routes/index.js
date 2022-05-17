@@ -1,6 +1,6 @@
 import { Outlet, useRoutes } from 'react-router-dom';
 
-import RoomForm from '../Component/RoomForm';
+import RoomForm from '../component/RoomForm';
 import AllRoomList from '../pages/AllRoomList';
 import ApplicantsList from '../pages/ApplicantsList';
 import LandingPage from '../pages/LandingPage';
