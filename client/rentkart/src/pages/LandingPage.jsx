@@ -1,30 +1,28 @@
 import React from 'react'
+import {useQuery} from 'react-query';
 import { Link } from 'react-router-dom';
 
 import Banner from "../images/rentKartBanner.webp"
-import { BenefitsData, CardList } from '../static/Cards';
-import Card from '../Component/Card';
+import { BenefitsData } from '../utils/Cards';
+import Card from '../component/Card';
 import "../styles/_landingPage.scss";
-import ShowCarousel from "../Component/showCarousel.js"
-import Description from "../Component/description.js"
-const onClickHandler=()=>{
-    // return <ShowCarousel/>;
-    // console.log("hello");
-    return (<>
-      <ShowCarousel/>;
-      <Description/>
-      </>);
-}
+import { getAllRoomsAvailable } from '../apis/room';
+import Loader from '../component/Loader';
+
 export default function LandingPage() {
-  return (
-    <div className='landing-container'>
+  const {data: allAvailableRooms, status} = useQuery('', getAllRoomsAvailable);
+
+  return (<>
+    {status ==='loading' ? 
+      <Loader /> :
+      <div className='landing-container'>
       <img src={Banner} alt="banner" className='landing-container__banner'/>
       <h1><span className='title'>RentKart</span>- Just Rent it!!</h1>
       <h2>Available Rooms</h2>
       <div className='landing-container__room-cards'>
-        {CardList.map((card) =>
-        <Link to={`room/:${card.id}`} > 
-          <Card onClick={onClickHandler} roomPhoto={card.img} description={card.description} key={card.id} rentalPrice={card.rentalPrice} />
+        {allAvailableRooms.data?.map((card) =>
+        <Link to={`room/:${card._id}`} > 
+          <Card roomPhoto={card.room_photos[0] ?? null} description={card.address} key={card._id} rentalPrice={card.rental_price} />
         </Link>
         )}
       </div>
@@ -43,6 +41,6 @@ export default function LandingPage() {
           </div>
         )}
       </div>
-    </div>
-  )
-}
+    </div> 
+    }
+  </>)}

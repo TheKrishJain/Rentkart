@@ -18,6 +18,7 @@
 .navbar-list {
   display: flex;
   gap: 5rem;
+  align-items: center;
   list-style: none;
   
 }
@@ -34,9 +35,11 @@
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%;
+  width: calc(100% - 4rem);
+  padding: 1rem 2rem;
   border-bottom: 1px solid black;
-
+  display: flex;
+  align-items: center;
 }
 
 .sticky + .content {

@@ -1,17 +1,23 @@
-import {React} from 'react'
-// import '../styles/bootstrap.min.css';
+import { useCallback } from 'react'
+import { useDispatch } from 'react-redux';
+import _ from 'lodash';
+import { SET_LOGIN_MODAL_OPEN } from '../redux/action';
 import '../index.css';
 import '../styles/nav.css';
-// import { ReactDOM } from 'react';
-import logo from "../assets/logo.png"
-import HouseLogo from "../images/house.svg"
+import '../styles/index.scss';
 
-export default function Rentkart() {
-  // const toggleNavbar = () => {
-  //   nav_header.classList.toggle("active");
-  // };
-  
-  // mobile_nav.addEventListener("click", () => toggleNavbar())
+import logo from "../images/logo.png"
+import HouseLogo from "../images/house.svg"
+import Avatar from './Avatar';
+
+export default function Rentkart({userData}) {
+const dispatch = useDispatch();
+
+const handleLoginModal = useCallback(() => {
+  dispatch({type: SET_LOGIN_MODAL_OPEN, payload: true});
+},[dispatch])
+
+
   return (
     <header className="header sticky" >
       <a href="#" target="_blank">
@@ -25,15 +31,27 @@ export default function Rentkart() {
           <li><a className="navbar-link" href="#">Services</a></li>
           <li>
             <a
-              className="navbar-link"
-              href="#"
-              target="_blank"
-              >
-                <img src={HouseLogo} alt="logo" />
-                List Your Property
-              </a>
+            className="navbar-link"
+            href="landlord"
+            >
+              <img src={HouseLogo} alt="logo" />
+              List Your Property
+            </a>
           </li>
-          <li><a href="#"><div className="btn btn-outline-primary myButton1">Login</div></a></li>
+          <li>
+            {_.isEmpty(userData) || _.isUndefined(userData) ?
+              <div 
+                onClick={handleLoginModal} 
+                className="btn btn-outline-primary myButton1 cursor"
+              >
+                Login
+              </div>
+              :
+              <>
+              <Avatar userData={userData.user ?? userData}/> 
+              </>
+              }
+          </li>
         </ul>
       </nav>
 

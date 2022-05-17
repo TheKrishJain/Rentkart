@@ -19,7 +19,7 @@ function Footer() {
         {/* <Link  to="/about">About</Link> */}
           <a  href="/about">About</a>
           <div>Contact</div>
-          <div onClick={() => setIsOpen(true)}>Terms & Conditions</div>
+          <div className="cursor" onClick={() => setIsOpen(true)}>Terms & Conditions</div>
         </div>
       </footer>
     </>

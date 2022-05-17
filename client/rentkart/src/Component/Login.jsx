@@ -1,86 +1,66 @@
-import React, {useState} from "react";
-import '../styles/index.scss';
+import React, { useCallback, useState } from "react";
+import {  useDispatch } from 'react-redux';
 
-export default function Login() {
-    // React States
-    const [errorMessages, setErrorMessages] = useState({});
-    const [isSubmitted, setIsSubmitted] = useState(false);
-  
-    // User Login info
-    const database = [
-      {
-        username: "user1",
-        password: "pass1"
-      },
-      {
-        username: "user2",
-        password: "pass2"
-      }
-    ];
-  
-    const errors = {
-      uname: "invalid username",
-      pass: "invalid password"
-    };
-  
-    const handleSubmit = (event) => {
-      //Prevent page reload
-      event.preventDefault();
-  
-      var { uname, pass } = document.forms[0];
-  
-      // Find user login info
-      const userData = database.find((user) => user.username === uname.value);
-  
-      // Compare user info
-      if (userData) {
-        if (userData.password !== pass.value) {
-          // Invalid password
-          setErrorMessages({ name: "pass", message: errors.pass });
-        } else {
-          setIsSubmitted(true);
-        }
-      } else {
-        // Username not found
-        setErrorMessages({ name: "uname", message: errors.uname });
-      }
-    };
-  
-    // Generate JSX code for error message
-    const renderErrorMessage = (name) =>
-      name === errorMessages.name && (
-        <div className="error">{errorMessages.message}</div>
-      );
-  
-    // JSX code for login form
-    const renderForm = (
-      <div className="form">
-        <form onSubmit={handleSubmit}>
-          <div className="input-container">
-            <label>Username </label>
-            <input type="text" name="uname" required />
-            {renderErrorMessage("uname")}
-          </div>
-          <div className="input-container">
-            <label>Password </label>
-            <input type="password" name="pass" required />
-            {renderErrorMessage("pass")}
-          </div>
-          <div className="button-container">
-            <input type="submit" />
-            
-          </div>
-          
-          <a style={{justify:'center'}} href="">Create account</a>
-        </form>
-      </div>
-    );
+import { useLoginInUser } from "../hooks/useGetInfo";
+import { SET_USER_DATA } from "../redux/action";
+import '../styles/_login.scss';
+
+export default function Login({ setLogMode }) {
+  const dispatch = useDispatch();
+  const [errorMessages, setErrorMessages] = useState('');
+  const [userVal, setUserVal] = useState({email: "", password: ""});
+
+  const handleChange = (event, key) => {
+    setUserVal({...userVal, [key]: event.target.value});
+  }
+
+  const handleSubmit = async () => {
+    try {
+      const data =  await useLoginInUser(userVal);
+      dispatch({type: SET_USER_DATA, payload: data})
+      window.location.reload();
+    } catch(error) {
+      setErrorMessages(error.message);
+    }
+  }
   
     return (
       <div className="Login">
         <div className="login-form">
           <div className="title">Sign In</div>
-          {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+          <div className="form-container">
+            <form className="form-box">
+              <div className="input-container">
+                <label>Email </label>
+                <input 
+                placeholder="Enter your email"
+                value={userVal.email}
+                onChange={(event) => handleChange(event, "email")} 
+                type="text" 
+                required />
+              </div>
+              <div className="input-container">
+                <label>Password </label>
+                <input 
+                placeholder="Enter password"
+                value={userVal.password}
+                onChange={(event) => handleChange(event, "password")} 
+                type="password" 
+                required />
+              </div>
+              <div className="button-container" onClick={() => handleSubmit()}>
+                Submit
+              </div>
+              {errorMessages ? <span className="login_error">{ errorMessages }</span> : null}
+              <span 
+                onClick={() => setLogMode('sign-up')} 
+                className="cursor"
+                style={{justify:'center', paddingTop: '1rem'}}
+              >
+                Create account
+              </span>
+            </form>
+         </div>
         </div>
       </div>
     );

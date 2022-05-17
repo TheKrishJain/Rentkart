@@ -1,43 +1,38 @@
 *{
-    margin: 0px;
-    padding: 0px;
+	margin: 0px;
+	padding: 0px;
 }
 
 .container{
-    background: linear-gradient(135deg ,red,white);
-    width: 100%;
-    min-height:100vh ;
-    display:flex ;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	font-size: 2rem;
+	flex-direction: column;
+	align-items: center;
+	padding: 7rem 4rem;
 }
 
-.bodysignup
-{
-
-    background-color: white;
-    min-width: 150px;
-    height: 380px;
-    padding:30px;
-    box-sizing: border-box;
-    border-radius: 10px;
-}
-
-.title{
-
-    color:red;
-    text-align: center;
-    margin: px 10px 10px 10px;
+.bodysignup {
+	background-color: white;
+	min-width: 150px;
+	height: 380px;
+	padding:30px;
+	box-sizing: border-box;
+	border-radius: 10px;
+	
+	.heading {
+		font-size: 3rem;
+		color: darkorchid;
+		font-style: normal;
+		text-align: center;
+	}
 }
 
 .name-wrapper,
 .email-wrapper,
 .password-wrapper{
-margin:5px;
-color:black;
-font-size: 14px;
-
-
+	margin:5px;
+	color:black;
+	font-size: 14px;
 }
 
 .input{
@@ -47,6 +42,7 @@ width:100%;
 border-bottom-style:2px solid black ;
 margin-bottom:10px;
 }
+
 .button-wrapper{
 display: flex;
 font-size: 20px;
@@ -55,4 +51,20 @@ color: blue;
 padding: 10px 60px;
 margin:auto;
 cursor: pointer;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	cursor: pointer;
+	font-size: 15px;
+	background: #01d28e;
+	border: 1px solid #01d28e;
+	color: #fff;
+	padding: 10px 20px;
+
+	&:hover {
+		background: #6cf0c2;
+	}
 }
