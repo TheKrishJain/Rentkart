@@ -1,16 +1,16 @@
 import { Provider } from 'react-redux';
-
+import React from 'react';
 import store from './redux/store';
 import MainRoutes from './routes';
 import './styles/index.scss';
+import Dropdown from './component/Dropdown';
 
 function App() {
+  const [selected,setSelected]=React.useState('Choose one');
   return (
-    <Provider store={store}>
-      <div className="App">
-        <MainRoutes />
-      </div>
-    </Provider>
+    
+    <Dropdown selected={selected} setSelected={setSelected}/>
+  
   );
 }
 
