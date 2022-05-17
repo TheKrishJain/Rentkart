@@ -67,6 +67,43 @@ app.post("/users/login", async (req, res) => {
     }
   })
 
+  // api for filtering rooms
+  app.get('/room',async(req,res)=>{
+    try{
+      let { page, size, sort } = req.query;
+        let obj = {}
+        if(req.query.rental_price){
+            obj.rental_price={$lte:req.query.rental_price}
+        }
+        if(req.query.city){
+            obj.city=req.query.city
+        }
+        if(req.query.total_bhk){
+            obj.total_bhk=req.query.total_bhk
+        }
+        if(req.query.furnished){
+            obj.furnished=req.query.furnished
+        }
+        if (!page) {
+          page = 1;
+        }
+        if(!size) {
+          size = 10;
+        }
+        const limit = parseInt(size);
+        const room =await Room.find(obj).sort({ votes: 1, _id: 1 }).limit(limit)
+        if(!room){
+            throw new Error()
+        }
+        res.send({
+          page,
+          size,
+          Info: room,
+        })
+    } catch(e){
+        res.status(404).send()
+    }
+  })
 const router = new Router();
 
 app.post('/user', async(req, res) => {
@@ -128,6 +165,32 @@ app.patch('/update-room/:id', auth, async (req, res) => {
   }
 })
 
+//GET...to read data per room
+app.get('/all-rooms', (req, res) => {
+  Room.find({}).then((rooms) => {
+      res.send(rooms)
+  }).catch((e) => {
+      res.status(500).send(e)
+  })
+})
+//GET individual room data using id....
+
+app.get('/room/:id', (req, res) => {
+  const _id = req.params.id
+
+  Room.findById(_id).then((room) => {
+      if (!room) {
+          return res.status(404).send()
+      }
+
+      res.send(room)
+  }).catch((e) => {
+      res.status(500).send(e)
+  })
+})
+
+
+
 // app.post('/user', (req, res) => {
 //     const landlord = new User(req.body)
 
@@ -180,6 +243,9 @@ app.delete("/users/me", auth, async (req, res) => {
     res.status(500).send();
   }
 });
+
+
+
 
 app.listen(port, () => {
   console.log("Server is up on port " + port);
