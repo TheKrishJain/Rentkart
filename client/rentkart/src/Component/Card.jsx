@@ -6,10 +6,10 @@ import '../styles/_card.scss'
 const Card = ({ children, ...props }) => (
     <div className='card'>
     <img  
-    className='card__picture' 
-    src={props.roomPhoto || FallbackImg}  
-    onError={(e) => (e.currentTarget.src = FallbackImg)} 
-    alt={"img"}
+			className='card__picture' 
+			src={props.roomPhoto || FallbackImg}  
+			onError={(e) => (e.currentTarget.src = FallbackImg)} 
+			alt={"img"}
     />
     <div className='card__info'>
     <p className='card__info--desc'>{props.description}</p>

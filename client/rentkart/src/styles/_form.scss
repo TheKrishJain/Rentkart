@@ -4,7 +4,7 @@
 .room-form {
   @include flex-col;
 
-  background: lightpink;
+  background: linear-gradient(153deg, rgba(255,255,255,1) 0%, rgba(206,177,230,1) 75%); 
   height: 100vh;
   border-radius: 12px;
   border: 1px solid;
@@ -22,13 +22,13 @@
     justify-content: space-around;
 
     &--form {
-      border: 1px solid;
       width: fit-content;
       border-radius: 5px;
       box-shadow: 0 5px 15px grey;
       display: flex;
       margin-left: 4rem;
       margin-bottom: 1rem;
+      background: lavender;
       overflow: auto;
     } 
 

@@ -1,11 +1,11 @@
 .footer {
-  position: fixed;
+  position: sticky;
   bottom: 0;
   text-align: center;
   width: 100%;
   font-size: 2rem;
   height: 90px;
-  background-color: #D0DAEE;
+  background: linear-gradient(153deg, rgba(255,255,255,1) 0%, rgba(206,177,230,1) 75%);
 
   &__items {
     display: flex;
@@ -14,7 +14,7 @@
   }
 
   >p {
-    color: rgb(195, 45, 15);
+    color: rgba(15, 9, 9, 0.918);
   }
 
   >a {
