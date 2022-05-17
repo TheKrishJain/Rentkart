@@ -1,15 +1,16 @@
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux';
-
+import _ from 'lodash';
 import { SET_LOGIN_MODAL_OPEN } from '../redux/action';
 import '../index.css';
 import '../styles/nav.css';
 import '../styles/index.scss';
 
-import logo from "../assets/logo.png"
+import logo from "../images/logo.png"
 import HouseLogo from "../images/house.svg"
+import Avatar from './Avatar';
 
-export default function Rentkart() {
+export default function Rentkart({userData}) {
 const dispatch = useDispatch();
 
 const handleLoginModal = useCallback(() => {
@@ -30,14 +31,27 @@ const handleLoginModal = useCallback(() => {
           <li><a className="navbar-link" href="#">Services</a></li>
           <li>
             <a
-              className="navbar-link"
-              href="landlord"
-              >
-                <img src={HouseLogo} alt="logo" />
-                List Your Property
-              </a>
+            className="navbar-link"
+            href="landlord"
+            >
+              <img src={HouseLogo} alt="logo" />
+              List Your Property
+            </a>
           </li>
-          <li><div onClick={handleLoginModal} className="btn btn-outline-primary myButton1 cursor">Login</div></li>
+          <li>
+            {_.isEmpty(userData) || _.isUndefined(userData) ?
+              <div 
+                onClick={handleLoginModal} 
+                className="btn btn-outline-primary myButton1 cursor"
+              >
+                Login
+              </div>
+              :
+              <>
+              <Avatar userData={userData.user ?? userData}/> 
+              </>
+              }
+          </li>
         </ul>
       </nav>
 

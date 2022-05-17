@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import { CardList } from '../static/Cards'
+import { CardList } from '../utils/Cards'
 import Card from '../component/Card'
 
 export default function RoomsPostedList() {

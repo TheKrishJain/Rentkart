@@ -1,22 +1,26 @@
 import React from "react";
+import {useDispatch} from 'react-redux';
 
+import { useLoginInUser } from "../hooks/useGetInfo";
+import { SET_USER_DATA } from "../redux/action";
 import '../styles/Signup.scss'
 
 const Signup =({ setLogMode })=> {
-	const [values,setValue]=React.useState({name:"", email:"", pass:""});
-	const [errors,setError]=React.useState({});
+  const dispatch = useDispatch();
 
-	const handleChange =(e)=> {
-		setValue({ ...values,
-		[e.target.name]:e.target.value,
-		[e.target.email]:e.target.value,
-		[e.target.pass]:e.target.value,
-	})}
+	const [values,setValue]=React.useState({name:"", email:"", password:""});
 
-	const handleClick =(event)=> {
-			event.preventDefault();
-	}  
-	
+	const handleChange =(event, key)=> {
+		setValue({...values, [key]: event.target.value})
+	}
+
+	const handleClick = async () => {
+	const {user}= await useLoginInUser(values);
+	if(user) {
+     dispatch({type: SET_USER_DATA, payload: user})
+  } 
+	}
+
 	return (
 		<div className="container">
 			<div className="bodysignup">
@@ -24,17 +28,17 @@ const Signup =({ setLogMode })=> {
 				<form className="form-wrapper">
 					<div className="name-wrapper">
 						<label className="label">Username</label>
-						<input className="input" type='text' name='name' value={values.name} onChange={handleChange} placeholder="ABC"/>
+						<input className="input" type='text' value={values.name} onChange={(event) => handleChange(event,"name")} placeholder="ABC"/>
 					</div>
 					<br/>
 					<div className="email-wrapper">
 						<label className="label">Email</label>
-						<input className="input" type='email'name='email' onChange={handleChange} value={values.email } placeholder="XYZ@GMAIL.COM"/>
+						<input className="input" type='email' onChange={(event) => handleChange(event,"email")} value={values.email } placeholder="XYZ@GMAIL.COM"/>
 					</div>
 					<br/>
 					<div className="password-wrapper">
 						<label className="label">Password</label>
-						<input className="input" type='password' name='pass' value={values.pass} onChange={handleChange} placeholder="Consist of min 8 char"/>
+						<input className="input" type='password' value={values.password} onChange={(event) => handleChange(event,"password")} placeholder="Consist of min 8 char"/>
 					</div>
 					<div className="button-container" onClick={handleClick}>
 						Submit 

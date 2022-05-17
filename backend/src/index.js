@@ -1,13 +1,20 @@
+import cors from "cors";
 import express, { Router, json } from "express";
-const app = express();
-import auth from './middleware/auth.js'
-import multer from 'multer'
-import sharp from 'sharp'
+// import multer from 'multer'
+// import sharp from 'sharp'
 import "./db/mongoose.js";
+import auth from './middleware/auth.js'
 import User from "./models/user.js";
+import Room from './models/room.js';
+
+const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(json());
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+}))
 
 app.post("/users", async (req, res) => {
   const user = new User(req.body);
@@ -35,28 +42,28 @@ app.post("/users/login", async (req, res) => {
   }
 });
   // api for filtering rooms
-  app.get('/room',async(req,res)=>{
+  app.get('/rooms-list',async(req,res)=>{
     try{
-        let obj = {}
-        if(req.query.rental_price){
-            obj.rental_price=req.query.rental_price
-        }
-        if(req.query.city){
-            obj.city=req.query.city
-        }
-        if(req.query.total_bhk){
-            obj.total_bhk=req.query.total_bhk
-        }
-        if(req.query.furnished){
-            obj.furnished=req.query.furnished
-        }
-        const room =await Room.find(obj)
-        if(!room){
-            throw new Error()
-        }
-        res.send(room)
+      let obj = {}
+      if(req.query.rental_price){
+          obj.rental_price=req.query.rental_price
+      }
+      if(req.query.city){
+          obj.city=req.query.city
+      }
+      if(req.query.total_bhk){
+          obj.total_bhk=req.query.total_bhk
+      }
+      if(req.query.furnished){
+          obj.furnished=req.query.furnished
+      }
+      const room =await Room.find(obj)
+      if(!room){
+          throw new Error()
+      }
+      res.send(room)
     } catch(e){
-        res.status(404).send()
+      res.status(404).send()
     }
   })
 
@@ -80,7 +87,7 @@ app.post('/user', async(req, res) => {
 })
 
 
-app.post('/create-room', async(req, res) => {
+app.post('/create-room', auth, async(req, res) => {
   const room = new Room(req.body);
   try {
     await room.save();
@@ -97,7 +104,7 @@ app.post('/create-room', async(req, res) => {
   }
 })
 
-app.patch('/update-room/:id', async (req, res) => {
+app.patch('/update-room/:id', auth, async (req, res) => {
   try {
     const _id = req.params.id;
 

@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
-import { RoomDataContext } from '../context'
+import React, { useState } from 'react'
+
 import InputField from './InputField'
 import '../styles/_form.scss';
 
 export default function RoomForm({ operationType }) {
-  const {roomData, setRoomData} = useContext(RoomDataContext);
+  const {roomData, setRoomData} = useState({});
 
   const RoomFormAttributes = [
     {
