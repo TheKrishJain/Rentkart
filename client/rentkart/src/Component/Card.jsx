@@ -4,7 +4,7 @@ import FallbackImg from '../images/img_placeholder.svg';
 import '../styles/_card.scss'
 
 const Card = ({ children, ...props }) => (
-    <div className='card'>
+    <button className='card' type="submit">
     <img  
 			className='card__picture' 
 			src={props.roomPhoto || FallbackImg}  
@@ -16,7 +16,7 @@ const Card = ({ children, ...props }) => (
     <span className='card__info--rent'>Rent- {props.rentalPrice}/ -P.M</span>
     {children ? <>{children}</> : null}
     </div>
-    </div>
+    </button>
 );
 
 export default Card;

@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import { CardList } from '../static/Cards'
-import Card from '../component/Card'
+import Card from '../Component/Card'
 
 export default function RoomsPostedList() {
   return (

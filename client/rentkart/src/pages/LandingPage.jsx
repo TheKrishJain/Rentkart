@@ -3,9 +3,18 @@ import { Link } from 'react-router-dom';
 
 import Banner from "../images/rentKartBanner.webp"
 import { BenefitsData, CardList } from '../static/Cards';
-import Card from '../component/Card';
+import Card from '../Component/Card';
 import "../styles/_landingPage.scss";
-
+import ShowCarousel from "../Component/showCarousel.js"
+import Description from "../Component/description.js"
+const onClickHandler=()=>{
+    // return <ShowCarousel/>;
+    // console.log("hello");
+    return (<>
+      <ShowCarousel/>;
+      <Description/>
+      </>);
+}
 export default function LandingPage() {
   return (
     <div className='landing-container'>
@@ -15,7 +24,7 @@ export default function LandingPage() {
       <div className='landing-container__room-cards'>
         {CardList.map((card) =>
         <Link to={`room/:${card.id}`} > 
-          <Card roomPhoto={card.img} description={card.description} key={card.id} rentalPrice={card.rentalPrice} />
+          <Card onClick={onClickHandler} roomPhoto={card.img} description={card.description} key={card.id} rentalPrice={card.rentalPrice} />
         </Link>
         )}
       </div>
