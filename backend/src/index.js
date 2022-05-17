@@ -1,6 +1,7 @@
 import express, { Router, json } from 'express';
 import Room from "./models/room.js";
 import './db/mongoose.js';
+//import Rooms from './models/room.js';
 import User from './models/user.js';
 
 const app = express()
@@ -9,6 +10,43 @@ const port = process.env.PORT || 3001
 
 app.use(json())
 
+  // api for filtering rooms
+  app.get('/room',async(req,res)=>{
+    try{
+      let { page, size, sort } = req.query;
+        let obj = {}
+        if(req.query.rental_price){
+            obj.rental_price={$lte:req.query.rental_price}
+        }
+        if(req.query.city){
+            obj.city=req.query.city
+        }
+        if(req.query.total_bhk){
+            obj.total_bhk=req.query.total_bhk
+        }
+        if(req.query.furnished){
+            obj.furnished=req.query.furnished
+        }
+        if (!page) {
+          page = 1;
+        }
+        if(!size) {
+          size = 10;
+        }
+        const limit = parseInt(size);
+        const room =await Room.find(obj).sort({ votes: 1, _id: 1 }).limit(limit)
+        if(!room){
+            throw new Error()
+        }
+        res.send({
+          page,
+          size,
+          Info: room,
+        })
+    } catch(e){
+        res.status(404).send()
+    }
+  })
 const router = new Router();
 
 app.post('/user', async(req, res) => {
