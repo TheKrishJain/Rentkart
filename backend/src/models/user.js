@@ -44,7 +44,7 @@ const userSchema = new Schema({
   phone_number: { type: String },
   thumbnail: { data: Buffer, contentType: String },
   posted_room_ids: [ { type: String } ],
-  room_applicant_ids: [ { } ],
+  room_applicant_ids: [ { type: String } ],
   interested_room_ids: [ { type: String } ],
 })
 
@@ -83,6 +83,6 @@ userSchema.pre('save', async function (next) {
   next()
 })
 
-const User = new model('user', userSchema);
+const User = model('user', userSchema);
 
 export default User;

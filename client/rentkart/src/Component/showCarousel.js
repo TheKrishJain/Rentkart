@@ -9,12 +9,12 @@ const breakPoints = [
   { width: 768, itemsToShow: 1 },
   { width: 1200, itemsToShow: 1 },
 ];
-export default function ShowCarousel() {
+export default function ShowCarousel({roomData}) {
   return (
     <>
       <div className="container">
         <div className="jss1104 jss1105">
-          <h1 class="MuiTypography-root MuiTypography-h6" style={{ paddingLeft: "75px" }}>2 BHK Flat at Susuwahi</h1>
+          <h1 class="MuiTypography-root MuiTypography-h6" style={{ paddingLeft: "75px" }}>{roomData.name}</h1>
           <div style={{ paddingRight: "75px" }}>
             <button type="button" style={{ borderStyle: "none" ,  padding: "10px" , borderWidth: "0px" }}>
               <span >Shortlist</span>&nbsp;

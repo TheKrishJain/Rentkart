@@ -1,6 +1,8 @@
 import React from 'react'
 import {useQuery} from 'react-query';
 import { Link } from 'react-router-dom';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 import Banner from "../images/rentKartBanner.webp"
 import { BenefitsData } from '../utils/Cards';
@@ -10,21 +12,40 @@ import { getAllRoomsAvailable } from '../apis/room';
 import Loader from '../component/Loader';
 
 export default function LandingPage() {
-  const {data: allAvailableRooms, status} = useQuery('', getAllRoomsAvailable);
+  const {data: allAvailableRooms, status} = useQuery('', getAllRoomsAvailable, {
+    refetchOnWindowFocus: false
+  });
+  const [value, setValue] = React.useState(-1);
 
+  const handleChange = (e, newValue) => {
+    setValue(newValue);
+  };
   return (<>
     {status ==='loading' ? 
       <Loader /> :
       <div className='landing-container'>
       <img src={Banner} alt="banner" className='landing-container__banner'/>
-      <h1><span className='title'>RentKart</span>- Just Rent it!!</h1>
+      <h1 className='rentkart_heading'><span className='title'>RentKart</span>- Just Rent it!!</h1>
       <h2>Available Rooms</h2>
       <div className='landing-container__room-cards'>
-        {allAvailableRooms.data?.map((card) =>
-        <Link to={`room/:${card._id}`} > 
-          <Card roomPhoto={card.room_photos[0] ?? null} description={card.address} key={card._id} rentalPrice={card.rental_price} />
-        </Link>
+      {allAvailableRooms?.data !==undefined ?
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        variant="scrollable"
+        scrollButtons
+        allowScrollButtonsMobile
+      >
+        {allAvailableRooms?.data?.data?.map((card) =>
+        <Tab 
+          label ={
+          <Link to={`room/:${card._id}`} > 
+            <Card roomPhoto={card?.room_photos ?? null} description={card.address} key={card._id} rentalPrice={card.rental_price} />
+          </Link>
+          }
+        />
         )}
+        </Tabs> : null}
       </div>
       <Link to="room-list" >
         <span className='landing-container__explore-btn'>View All Rooms</span>

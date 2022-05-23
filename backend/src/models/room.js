@@ -17,10 +17,11 @@ const RoomSchema = new Schema({
   },
   landlord_id: { type: String, required: true },
   tenant_ids: [{ type: String }],
-  room_photos: [{ data: Buffer, contentType: String}],
+  room_photos: { type: Buffer},
   furnished: { type: String, required: true },
   security_deposit: { type: String },
   landlord_contact_no:  {type: Number, required: true },
+  for_whom: {type: String}
 })
 
 const Room = model('Room', RoomSchema);

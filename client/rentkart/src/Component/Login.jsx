@@ -16,7 +16,7 @@ export default function Login({ setLogMode }) {
 
   const handleSubmit = async () => {
     try {
-      const data =  await useLoginInUser(userVal);
+      const { data } =  await useLoginInUser(userVal);
       dispatch({type: SET_USER_DATA, payload: data})
       window.location.reload();
     } catch(error) {

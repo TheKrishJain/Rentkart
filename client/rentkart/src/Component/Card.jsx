@@ -1,10 +1,11 @@
 import React from 'react'
+import classNames from 'classnames';
 
 import FallbackImg from '../images/img_placeholder.svg';
 import '../styles/_card.scss'
 
 const Card = ({ children, ...props }) => (
-	<div className='card'>
+	<div className={classNames('card',{[`${props.cardClassName}`] : props.cardClassName})}>
 	<img  
 		className='card__picture' 
 		src={props.roomPhoto || FallbackImg}  

@@ -1,12 +1,13 @@
 import { Outlet, useRoutes } from 'react-router-dom';
 
-import RoomForm from '../component/RoomForm';
 import AllRoomList from '../pages/AllRoomList';
 import ApplicantsList from '../pages/ApplicantsList';
 import LandingPage from '../pages/LandingPage';
 import Layout from "../pages/Layout";
+import RoomCreate from '../pages/RoomCreate';
 import RoomPage from '../pages/RoomPage';
 import RoomsPostedList from '../pages/RoomsPostedList';
+import RoomUpdateForm from '../pages/RoomUpdateForm';
 
 const RentKartRoutes = [
 {
@@ -27,11 +28,11 @@ const RentKartRoutes = [
         },
         {
           path: 'post-room',
-          element: <RoomForm />
+          element: <RoomCreate />
         },
         {
           path: 'update/:id',
-          element: <RoomForm />
+          element: <RoomUpdateForm />
         },
         {
           path: 'view-applicants/:id',

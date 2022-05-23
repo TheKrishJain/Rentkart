@@ -1,4 +1,4 @@
-import { userInfo, userLogin } from "../apis/user";
+import { userInfo, userLogin, userSignUp } from "../apis/user";
 
 export const useGetInfo = async () => {
   const {data} = await userInfo()
@@ -10,3 +10,7 @@ export const useLoginInUser = async (userData) => {
   return data;
 }
 
+export const useSignUpUser = async (userData) => {
+  const {data} = await userSignUp(userData)
+  return data;
+}

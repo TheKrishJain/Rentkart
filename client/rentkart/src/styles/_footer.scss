@@ -1,5 +1,6 @@
 .footer {
-  position: sticky;
+  // position: sticky;
+  position: inherit;
   bottom: 0;
   text-align: center;
   width: 100%;
@@ -11,6 +12,16 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding-top: 1rem;
+
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+
+  @include tablet {
+    height: fit-content;
+    padding: 1rem 0;
   }
 
   >p {
