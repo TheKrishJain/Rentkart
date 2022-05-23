@@ -11,6 +11,11 @@
     width: calc(100% + 12rem);
     height: fit-content;
     max-height: 65rem;
+
+    @include tablet {
+      width: calc(100% - 6rem);
+      padding-right: 6rem;
+    }
   } 
 
   &__room-cards {
@@ -18,6 +23,11 @@
     align-items: center;
     justify-content: space-around;
     padding: 3rem 0;
+
+    @include tablet {
+      width: 100%;
+      margin-left: -6rem;
+    }
   }
 
   &__explore-btn {
@@ -26,6 +36,22 @@
     cursor: pointer;
     font-weight: 600;
     padding: 2rem 1rem;
+    text-align: center;
+    width: 100%;
+    padding-right: 3rem;
+  }
+
+  @include tablet {
+    margin-left: -1rem;
+  }
+}
+
+.rentkart_heading {
+  @include tablet {
+    font-size: 2.8rem;
+    margin-left: -2.8rem;
+    padding-bottom: 1.4rem;
+
   }
 }
 
@@ -33,6 +59,11 @@
   font-style: italic;
   color: darkorchid;
   padding: 2rem 1rem;
+
+  @include tablet {
+  font-style: unset;
+  padding: unset;
+  }
 }
 
 .benefit_box {
@@ -57,6 +88,12 @@
     padding-left: 2rem;
     text-align: left;
   }
+
+  @include tablet {
+    width: -webkit-fill-available;
+    margin-left: -1rem;
+    margin-right: 4rem;
+  }
 }
 
 .benefit_container {
@@ -64,21 +101,36 @@
 
   @include tablet {
     @include flex-col;
+    width: 100%;
   }
 }
 
 .benefit-title {
   font-size: 2.4rem;
   font-weight: 600;
+
+  @include tablet {
+    font-size: 2rem;
+   @include multiline-ellipses(2);
+  }
 }
 
 .benefit-description {
   @include multiline-ellipses(2);
   font-size: 1.8rem;
+
+  @include tablet {
+    font-size: 1.6rem;
+
+  }
 }
 
 .benefit-heading {
   font-size: 3rem;
   font-weight: 600;
   padding: 2rem;
+
+  @include tablet {
+    padding-right: 5rem;
+  }
 }

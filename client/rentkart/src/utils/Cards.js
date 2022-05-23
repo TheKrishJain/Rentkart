@@ -31,3 +31,6 @@ export const BenefitsData = [
     description: "We verify our tenants as well as owners details",
   }
 ]
+
+export const mockColors = [ "#e6b8b1", "#35eb7f", "#14faf9", "#1417fa",
+  "#fa14f7", "#fa1483"]

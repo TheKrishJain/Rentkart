@@ -2,24 +2,43 @@
 @import './display';
 
 @import './footer';
-@import './login';
+@import './sidebar';
 
 .main-container {
-  width: 100%;
+  width: -webkit-fill-available;
   max-width: 170rem;
   margin: 8rem 2rem 6rem;
   padding: 0 5rem;
   font-size: 2rem;
   font-weight: 400;
   padding: 2rem;
-  min-height: 72vh;
+  min-height: 100vh;
+
+  @include tablet {
+    max-width: 100rem;
+    margin: 5rem 1rem 2rem;
+  }
 }
 
 .App {
-  overflow: hidden;
+  overflow: auto;
+  height: 100vh;
 }
 
  a {
   text-decoration: unset !important;
   color: inherit;
+}
+
+.rentkart_button {
+  background-color: lavender;
+  padding: 1rem 3.5rem;
+  border: 1px solid lavender;
+  font-size: 3.4rem;
+  font-weight: 500;
+
+  &:hover {
+    background-color: rgba(206, 177,230,1) ;
+	  box-shadow: 1px 1px 1px 1px  rgba(206, 177,230,1) ;
+  }
 }

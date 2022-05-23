@@ -1,10 +1,18 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
-export default function InputField({ inputType, value, onChange = (e)=>{}, tagType, placeHolder = "Enter field", isRequired = true, inputFieldClass }) {
+export default function InputField({ inputType, value, onChange, tagType, placeHolder = "Enter field", isRequired = true, inputFieldClass }) {
   const [inputVal, setInputVal] = useState(value || "");
+
   const handleChange = useCallback((event) => {
-    setInputVal(event.target.value.trim());
-  } , [])
+    if(event?.target.value) {
+    setInputVal(event?.target.value);
+    onChange(event?.target.value);
+    }
+  } , [inputVal])
+
+  useEffect(() => {
+    setInputVal(value)
+  }, [value])
 
   return (
    <>
@@ -15,10 +23,7 @@ export default function InputField({ inputType, value, onChange = (e)=>{}, tagTy
         placeholder={placeHolder}
         required={isRequired}
         type={inputType || "text"}
-        onChange={() => {
-          handleChange();
-          onChange(inputVal);
-        }}
+        onChange={handleChange}
       />
       : <textarea 
           value={inputVal}
@@ -26,10 +31,7 @@ export default function InputField({ inputType, value, onChange = (e)=>{}, tagTy
           placeholder={placeHolder}
           required={isRequired}
           type={inputType || "text"}
-          onChange={() => {
-            handleChange();
-            onChange(inputVal);
-          }}
+          onChange={handleChange}
         />
    }
    </>
